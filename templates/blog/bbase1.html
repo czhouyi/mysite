@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+    xmlns:wb="http://open.weibo.com/wb">
+<head> 
+    <title>{% block title %} 我的个人主页 {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/blog/css/base1.css" />
+    <link rel="stylesheet" type="text/css" href="/static/blog/css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="/static/blog/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/static/blog/css/custom.css" />
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/blog/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/blog/js/jquery.postjson.js"></script>
+    <script type="text/javascript" src="/static/blog/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/blog/js/custom.js"></script>
+</head>
+
+<body>
+    <div class="go-top">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+    </div>
+<div id="container">
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name"><a href="/">我的个人主页</a></h1>
+        </div>
+        <div class="tagline">{{subtitle}}</div>
+        <!--<div id="user-tools">
+            {% if user.id %}
+            Welcome,<strong>{{user.username}}</strong>.
+            {% if user.is_staff %}
+            <a href="{% url "admin:index" %}" target="_blank">Admin</a>|
+            <a href="{% url "admin:blog_post_add" %}" target="_blank">Add Post</a>|
+            {% endif %}
+            <a href="/admin/password_change/">Change password</a>/
+            <a href="/admin/logout/">Log out</a>
+            {% else %}
+            Welcome, Guest.
+            <a href="/admin/login/">Log in</a>/
+            <a href="#">Register</a>
+            {% endif %}
+        </div>-->
+        <div id="navbar" class="navbar navbar-static-top navbar-blue">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a href="/blog/" class="brand x-autodisplay" style="display: none;">我的个人主页</a>
+                    <ul id="main-nav-bar" class="nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="top">
+        <!--<div style="float:right;margin-right:10px;font-size:14px;">
+            <ul style="list-style-tyle: none;">
+                <li style="list-style-type: none;float: left;line-height: 24px;margin: 0 7px;">
+                <wb:follow-button uid="1716898097" type="red_1" width="67" height="24"></wb:follow-button>
+                </li>
+                <li style="list-style-type: none;float: left;line-height: 24px;margin: 0 7px;">
+                <wb:share-button addition="simple" type="button" default_text="欢迎来到我的博客! http://115.29.16.215:8000/blog/" ralateUid="1716898097"></wb:share-button>
+                </li>
+            </ul>
+        </div>-->
+        <div class="clear"></div>
+    </div>
+    {% block content %} {% endblock %}
+    <div id="footer">
+        <div class="text">Designed by Andy</div>
+        <div class="text">Copyright © 2014 All rights reserved. <a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备1401053</a></div>
+        <div class="clear"></div>
+    </div>
+</div>
+</body>
+</html>

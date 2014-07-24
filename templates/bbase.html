@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+    xmlns:wb="http://open.weibo.com/wb">
+<head> 
+    <meta property="qc:admins" content="506437276761320756375" />
+    <title>{% block title %} 裔传洲的个人网站 {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/metro/css/metro-bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/static/metro/css/metro-bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/static/metro/css/iconFont.css" />
+    <link rel="stylesheet" type="text/css" href="/static/metro/css/docs.css" />
+    <!--<link rel="stylesheet" type="text/css" href="/static/blog/css/dashboard.css" />
+    <link rel="stylesheet" type="text/css" href="/static/blog/css/bootstrap.css" />-->
+    <link rel="stylesheet" type="text/css" href="/static/blog/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/d3/css/coltree.css" />
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/jquery/jquery.widget.min.js"></script>
+    <script type="text/javascript" src="/static/metro/min/metro.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <!--<script type="text/javascript" src="/static/blog/js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="/static/custom.js"></script>
+    <script type="text/javascript" src="/static/d3/js/d3.v3.min.js"></script>
+    <!--<script type="text/javascript" src="/static/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="/static/tinymce/textareas.js"></script>-->
+</head>
+
+<body class="metro">
+    <header class="bg-dark">
+    <div class="navigation-bar dark fixed-top shadow">
+        <div class="navigation-bar-content container" >
+            <a class="element" href="/">裔传洲的个人网站</a>
+            <span class="element-divider"></span>
+            <ul class="element-menu">
+                <li><a class="element" href="/">主页</a></li>
+                <li><a class="element" href="/blog/">博客</a></li>
+            </ul>
+            <span class="element-divider"></span>
+            <div class="element input-element">
+                <form action="#" onsubmit="return search($('#search-text').val())">
+                    <div class="input-control text">
+                        <input id="search-text" type="text" placeholder="搜索">
+                        <button class="btn-search"></button>
+                    </div>
+                </form>
+            </div>
+            <div class="no-tablet-portrait no-phone">
+                {% if username %}
+                <ul class="element-menu place-right">
+                    <li>
+                    <a class="element image-button image-left dropdown-toggle" style="margin-right:20px;">
+                        {{username}}
+                        <img src="{{head_image}}">
+                    </a>
+                    <ul class="dropdown-menu place-right dark" data-role="dropdown">
+                        <li><a href="/logout/">退出</a></li>
+                    </ul>
+                    </li>
+                </ul>
+                {% else %}
+                    <a title="QQ登录" href="/qqlogin/" class="element place-right">
+                        <img src="/static/images/qq.png">
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </header>
+    <div class="go-top">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+    </div>
+    {% block content %} {% endblock %}
+</div>
+</body>
+</html>

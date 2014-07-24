@@ -1,0 +1,77 @@
+{% extends "bbase.html" %}
+
+{% block title %} {{post.title}} - 裔传洲的个人网站 {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>
+            <a href="/blog/">
+                <i class="icon-arrow-left-3 fg-darker smaller"></i>
+            </a>
+            博客文章
+            <small class="on-right"></small>
+        </h1>
+        <div class="grid no-margin">
+            <div class="span12 border">
+                <div><h2>{{post.title}}</h2></div>
+                <div>
+                    <div class="button default">{{post.created|date:'Y-m-d'}}</div>
+                    <div class="button default">阅读 {{post.vtime}}</div>
+                    {% if post.topic %}
+                        <div class="button danger">{{post.topic.name}}</div>
+                    {% endif %}
+                    {% for tag in post.tags.all %}
+                        <a href="/blog/tag/{{tag.id}}/" class="button primary">{{tag.name}}</a>
+                    {% endfor %}
+                </div>
+                <img src="{{post.cover|cut:'..'}}">
+                <div class="content" style="display: block;">{{post.body|safe|linebreaks}}</div>
+            </div>
+            {% for comment in comments %}
+            <div class="row">
+            <div class="span3">
+                <div class="bg-lighterBlue padding10 text-center" style="height:150px">
+                    <h1 class="fg-white" style="font-size:60px;line-height: 40px;margin-bottom:20px">{{forloop.counter}}</h1>
+                    <p class="subheader-secondary fg-white">{{comment.author}}</p>
+                    <p class="subheader-secondary fg-white">{{comment.created|date:'Y-m-d'}}</p>
+                </div>
+            </div>
+            <div class="span9">
+                <div class="notice">
+                    <div class="fg-white">{{comment.body}}</div>
+                </div>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="span12">
+        <div class="tab-control" data-role="tab-control" style="padding: 20px 0 20px 0;">
+            <ul class="tabs">
+                <li class="active"><a href="#comment">评论</a></li>
+            </ul>
+            <div class="frames">
+                <div id="comment" class="frame" style="background-color:white;display: block;">
+                {% if username %}
+                    <form id="dform" action="{% url 'blog.views.add_comment' post.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-control textarea">
+                        <textarea name="body" data-transform="input-control" placeholder="评论一下"></textarea>
+                    </div>
+                    <div id="submit"><input type="submit" value="提交"></div>
+                    </form>
+                {% else %}
+                    请先登录
+                    <a href="/qqlogin/">
+                        <img src="/static/images/qq.png">
+                    </a>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        </div>
+        {% if not post %}
+            <div>抱歉，没有查到相关的博客</div>
+        {% endif %}
+    </div>
+
+{% endblock %}

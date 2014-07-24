@@ -1,0 +1,72 @@
+{% extends "bbase.html" %}
+
+{% block title %} 主页 - 裔传洲的个人网站 {% endblock %}
+
+{% block content %}
+<div style="background-color: rgb(239, 234, 227);">
+    <div style="background: url(/static/images/red.jpg) top left no-repeat; background-size: cover; height: 420px;">
+        <div class="container">
+        <div class="span7">
+            <h1>最近文章</h1>
+            <div class="carousel" id="carousel" style="width: 100%; height: 300px;">
+            {% for post in index_posts %}
+                <div class="slide" style="display: block; left: 0px;">
+                    <div class="image-container" style="width:100%;height:100%;">
+                    <a href="/blog/post/{{post.id}}/">
+                    <img src="{{post.cover|cut:'..'}}" class="cover1">
+                    </a>
+                    <div class="overlay" style="font-size:12pt;">{{post.title}}</div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <script>
+                $(function(){
+                    $("#carousel").carousel({
+                        height: 300,
+                        effect: 'fade',
+                        markers:{
+                            show: true,
+                            type: 'square',
+                            position: 'bottom-right'
+                        }
+                    });
+                })
+            </script>
+        </div>
+        </div>
+    </div>
+    <div class="container" style="padding: 10px 0 10px;">
+    <div class="panel" data-role="panel">
+        <div class="panel-header bg-dark fg-white">主题地图</div>
+        <div id="coltree" class="panel-content" style="display: block;">
+        </div>
+    </div>
+    </div>
+    <script src="/static/d3/js/coltree.js"></script>
+    <div class="bg-dark">
+        <div class="container" style="padding: 10px 0;">
+            <div class="grid no-margin">
+                <div class="row no-margin">
+                    <!--<div class="span3 padding10">
+                        <img src="/static/images/a.jpg" alt class="polaroid">
+                    </div>-->
+                    <div class="span6 padding10">
+                        <h3 class="fg-white">关于作者</h3>
+                        <p class="fg-white">你好！我是裔传洲，欢迎来到我的个人网站。</p>
+                    </div>
+                    <div class="span3 padding10">
+                        <p class="fg-white">联系方式</p>
+                        <p class="fg-white">邮箱：czhouyi@gmail.com</p>
+                        <p class="fg-white">QQ: 542490501</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container tertiary-text bg-dark fg-white" style="padding: 10px;">
+            裔传洲的个人网站©2014 - 
+            <a href="http://www.miitbeian.gov.cn/" target="_blank" class="fg-yellow">沪ICP备1401053</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
